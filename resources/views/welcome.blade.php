@@ -18,23 +18,24 @@
         <div id="main" class="container">
             <div class="row">
                 <div class="col-sm-4">
-                    <h1>VUEjs y Laravel</h1>
+                    <h1>VUEjs - AJAX axios</h1>
                     <ul class="list-group">
                         <li v-for="item in lists" class="list-group-item">                      
-                            @{{ item.name }} <strong>@{{ item.email }}</strong>
+                            @{{ item.name }}
                         </li>
                     </ul>
                 </div>
                 <div class="col-sm-8">
                     <h1>JSON</h1>
                     <pre>
-                        @{{ $data | json }}
+                        @{{ $data }}
                     </pre>
                 </div>
             </div>
         </div>
+        <script src="{{ asset('s/app.s') }}"></script>
+    </body>
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.0/vue.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
+        
+        
 </html>
