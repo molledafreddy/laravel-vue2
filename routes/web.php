@@ -10,12 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\User;
+// use App\User;
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
-Route::get('users', function(){
-	$users = User::orderBy('id','DESC')->take(5)->get();
-	return $users;
-});
+// Route::get('users', function(){
+// 	$users = User::orderBy('id','DESC')->take(5)->get();
+// 	return $users;
+// });
+
+Route::resource('tasks', 'TaskController', ['except' => 'show']);
+

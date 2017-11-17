@@ -1,16 +1,16 @@
-var urlUsers = 'https://jsonplaceholder.typicode.com/users';
 new Vue({
-	el: '#main',
-	created: function() {
-		this.getUsers();
+	el: '#crud',
+	created: funciton(){
+		this.geteeps();
 	},
 	data: {
-		lists: []
+		keeps:[]
 	},
-		methods: {
-		getUsers: function() {
-			axios.get(urlUsers).then(response => {
-				this.lists = response.data
+	methods:{
+		getkeeps: function(){
+			var urlKeeps = 'tashs';
+			axios.get(urlKeeps).the(response =>{
+				this.keeps = response.data
 			});
 		}
 	}
