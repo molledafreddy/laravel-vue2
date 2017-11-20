@@ -19,16 +19,7 @@ class TaskController extends Controller
         return $tasks;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //Formulario 
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -37,20 +28,13 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'keep' => 'required'
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
-    {
-        $task = Task::findOrFail($id);
-        //Formulario
-        return $task;
+        $Task::create($request->all());
+
+        return;
     }
 
     /**

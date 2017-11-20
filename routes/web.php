@@ -20,5 +20,5 @@ Route::get('/', function () {
 // 	return $users;
 // });
 
-Route::resource('tasks', 'TaskController', ['except' => 'show']);
+Route::resource('tasks', 'TaskController', ['except' => 'show', 'create', 'edit']);
 

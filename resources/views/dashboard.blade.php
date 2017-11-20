@@ -6,9 +6,11 @@
 	<div class="col-xs-12">
 		<h1 class="page-header">Crud Laravle y Vuejs</h1>
 	</div>
-	<div class="colsm-7">
-		<a href="#" class="btn btn-primary pull-right">Nueva tarea</a>
-		<table class="table table-hover table-sprite">
+	<div class="col-sm-7">
+		<a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#create">
+			Nueva tarea
+		</a>
+		<table class="table table-hover table-striped">
 			<thead>
 				<th>ID</th>
 				<th>Tarea</th>
@@ -17,24 +19,26 @@
 				</th>
 			</thead>
 			<tbody>
-				<tr>
-					<td width="10px">1</td>
-					<td>Tarea 1</td>
+				<tr v-for="keep in keeps	">
+					<td width="10px">@{{ keep.id }}</td>
+					<td>@{{ keep.keep }}</td>
 					<td width="10px">
 						<a href="#" class="btn btn-warning btn-sm">Editar</a>
 					</td>
 					<td width="10px">
-						<a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+						<a href="#" class="btn btn-danger btn-sm" v-on:click.prevent="deleteKeep(keep)">Eliminar</a>
 					</td>
 				</tr>
 			</tbody>
-		</table>		
+		</table>
+		@include('create')				
 	</div>
 	<div class="col-sm-5">
 		<pre>
 			@{{ $data }}
 		</pre>	
 	</div>
+	
 </div>
 
 @endsection
