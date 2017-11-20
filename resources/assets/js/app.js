@@ -1,15 +1,15 @@
 new Vue({
 	el: '#crud',
-	created: funciton(){
-		this.geteeps();
+	created: function(){
+		this.getkeeps();
 	},
 	data: {
 		keeps:[]
 	},
 	methods:{
 		getkeeps: function(){
-			var urlKeeps = 'tashs';
-			axios.get(urlKeeps).the(response =>{
+			var urlKeeps = 'tasks';
+			axios.get(urlKeeps).then(response => {
 				this.keeps = response.data
 			});
 		}

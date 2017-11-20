@@ -31,7 +31,9 @@
 		</table>		
 	</div>
 	<div class="col-sm-5">
-		@{{ $data }}
+		<pre>
+			@{{ $data }}
+		</pre>	
 	</div>
 </div>
 

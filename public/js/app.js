@@ -12116,19 +12116,19 @@ return /******/ (function(modules) { // webpackBootstrap
 });
 ;
 //# sourceMappingURL=axios.map
-var urlUsers = 'https://jsonplaceholder.typicode.com/users';
 new Vue({
-	el: '#main',
-	created: function() {
-		this.getUsers();
+	el: '#crud',
+	created: function(){
+		this.getkeeps();
 	},
 	data: {
-		lists: []
+		keeps:[]
 	},
-		methods: {
-		getUsers: function() {
-			axios.get(urlUsers).then(response => {
-				this.lists = response.data
+	methods:{
+		getkeeps: function(){
+			var urlKeeps = 'tasks';
+			axios.get(urlKeeps).then(response => {
+				this.keeps = response.data
 			});
 		}
 	}
