@@ -14,9 +14,20 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::get();
+        $tasks = Task::orderBy('id', 'DESC')->paginate(4);
 
-        return $tasks;
+        return [
+            'paginate'[
+                'total'         => $tasks->total(),
+                'current_page'  => $tasks->currentPage(),
+                'per_page'      => $tasks->perPage(),
+                'last_page'     => $tasks->lastPage(),
+                'from'          => $tasks->firstitem(),
+                'to'            => $tasks->lastPage(),
+
+            ],
+            'tasks' => $tasks
+        ];
     }
 
     
@@ -28,12 +39,13 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'keep' => 'required'
         ]);
 
-        $Task::create($request->all());
-
+        Task::create($request->all());
+        
         return;
     }
 
@@ -46,7 +58,12 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        
+        $this->validate($request, [
+            'keep' => 'required',
+        ]);
+        // dd("hola");
+        Task::find($task->id)->update($request->all());
+        // Task::update($request->all())->where('id', $task->id);
     }
 
     /**

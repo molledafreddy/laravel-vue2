@@ -4,7 +4,7 @@
 
 <div id="crud" class="row">
 	<div class="col-xs-12">
-		<h1 class="page-header">Crud Laravle y Vuejs</h1>
+		<h1 class="page-header">Crud Laravel y Vuejs</h1>
 	</div>
 	<div class="col-sm-7">
 		<a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#create">
@@ -23,7 +23,7 @@
 					<td width="10px">@{{ keep.id }}</td>
 					<td>@{{ keep.keep }}</td>
 					<td width="10px">
-						<a href="#" class="btn btn-warning btn-sm">Editar</a>
+						<a href="#" class="btn btn-warning btn-sm" v-on:click.prevent="editKeep(keep)">Editar</a>
 					</td>
 					<td width="10px">
 						<a href="#" class="btn btn-danger btn-sm" v-on:click.prevent="deleteKeep(keep)">Eliminar</a>
@@ -31,7 +31,8 @@
 				</tr>
 			</tbody>
 		</table>
-		@include('create')				
+		@include('create')
+		@include('edit')				
 	</div>
 	<div class="col-sm-5">
 		<pre>

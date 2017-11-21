@@ -25226,15 +25226,20 @@ return /******/ (function(modules) { // webpackBootstrap
 ;
 //# sourceMappingURL=axios.map
 new Vue({
+
 	el: '#crud',
 	created: function(){
-		this.getKeeps();
+		var valor = this.getKeeps();
+		
 	},
+
 	data: {
 		keeps: [],
- +		newKeep: '',
- +		errors: []
+ 		newKeep: '',
+ 		fillKeep: {'id':'', 'keep':''},
+ 		errors: []
 	},
+
 	methods:{
 		getKeeps: function(){
 			var urlKeeps = 'tasks';
@@ -25242,6 +25247,25 @@ new Vue({
 				this.keeps = response.data
 			});
 		},
+		editKeep: function(keep){
+			this.fillKeep.id   = keep.id;
+			this.fillKeep.keep = keep.keep;
+			$('#edit').modal('show');
+		},
+		
+		updateKeep: function(id) {
+			var url = 'tasks/' + id;
+			axios.put(url, this.fillKeep).then(response => {
+				this.getKeeps();
+				this.fillKeep = {'id': '', 'keep': ''};
+				this.errors	  = [];
+				$('#edit').modal('hide');
+				toastr.success('Tarea actualizada con éxito');
+			}).catch(error => {
+				this.errors = 'Corrija para poder editar con éxito'
+			});
+		},
+		
 		deleteKeep: function(keep){
 			var url = 'tasks/' + keep.id; //concatena el id  a la ruta
 			axios.delete(url).then(response =>{//eliminamos el registro
@@ -25249,19 +25273,27 @@ new Vue({
 				toastr.success('Eliminado correctamente');//enviamos la notificacion
 			});
 		},
-		createKeep: function() {
- +			var url = 'tasks';
- +			axios.post(url, {
- +				keep: this.newKeep
- +			}).then(response => {
- +				this.getKeeps();
- +				this.newKeep = '';
- +				this.errors = [];
- +				$('#create').modal('hide');
- +				toastr.success('Nueva tarea creada con éxito');
- +			}).catch(error => {
- +				this.errors = error.response.data
- +			});
+		createKeep: function(){
+			var url = 'tasks';
+			//captura la ruta y los parametros que va a insertar
+			axios.post(url, {
+
+				keep: this.newKeep
+
+			}).then(response =>	{
+				//consulta todos los registros de la bd
+				this.getKeeps();
+				//limpia el campo 
+				this.newKeep = '';
+				//limpia los errores
+				this.errors = [];
+				//quita el modal de la ventana
+				$('#create').modal('hide');
+				toastr.success('Nueva tarea creada con éxito');
+				//catch captura los errores
+			}).catch(error => {
+				this.errors = error.response.data
+			});
 		}
 	}
 });
